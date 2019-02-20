@@ -114,17 +114,6 @@
 			path = SwiftyGif;
 			sourceTree = "<group>";
 		};
-		A835101F221D856E0035FDE8 /* URLRequest */ = {
-			isa = PBXGroup;
-			children = (
-				A8351020221D856E0035FDE8 /* ResultType.swift */,
-				A8351021221D856E0035FDE8 /* DownloadTask.swift */,
-				A8351022221D856E0035FDE8 /* GenericDownloadTask.swift */,
-				A8351023221D856E0035FDE8 /* DownloadService.swift */,
-			);
-			path = URLRequest;
-			sourceTree = "<group>";
-		};
 		FA29E9291CA9340E00E579D5 = {
 			isa = PBXGroup;
 			children = (
@@ -177,10 +166,13 @@
 		FA29E9551CA9342F00E579D5 /* SwiftyGif */ = {
 			isa = PBXGroup;
 			children = (
-				A835101F221D856E0035FDE8 /* URLRequest */,
 				FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */,
 				FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */,
 				FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */,
+				A8351020221D856E0035FDE8 /* ResultType.swift */,
+				A8351021221D856E0035FDE8 /* DownloadTask.swift */,
+				A8351022221D856E0035FDE8 /* GenericDownloadTask.swift */,
+				A8351023221D856E0035FDE8 /* DownloadService.swift */,
 			);
 			path = SwiftyGif;
 			sourceTree = "<group>";
