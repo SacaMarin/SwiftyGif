@@ -108,6 +108,13 @@ public extension UIImageView {
             print("Invalid Gif URL")
             return
         }
+        let progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.frame = CGRect(x: self.frame.origin.x, y: -7, width: self.frame.width, height: 12)
+        progressView.trackTintColor = UIColor(red: 249/255, green: 250/255, blue: 252/255, alpha: 1)
+        progressView.tintColor = UIColor(red: 249/255, green: 127/255, blue: 103/255, alpha: 1)
+        progressView.isHidden = false
+        progressView.transform = CGAffineTransform(scaleX: 1, y: 2)
+        self.addSubview(progressView)
         
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
         downloadTask1 = DownloadService.shared.download(request: request)
@@ -126,11 +133,15 @@ public extension UIImageView {
         }
         downloadTask1?.progressHandler = { [weak self] in
             print("Task1: \($0)")
-            //            self?.loadProgressIndicator1.doubleValue = $0
+            progressView.progress = Float($0)
+            if $0 == 1.0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                      progressView.isHidden = true
+                }
+            }
         }
         
-        //        imageView1.image = nil
-        //        loadProgressIndicator1.doubleValue = 0
+        progressView.progress = Float(0)
         downloadTask1?.resume()
     }
 
