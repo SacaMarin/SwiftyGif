@@ -27,6 +27,8 @@ let _displayingKey = malloc(4)
 let _isPlayingKey = malloc(4)
 let _animationManagerKey = malloc(4)
 let _delegateKey = malloc(4)
+fileprivate var downloadTask1:  DownloadTask?
+fileprivate var downloadTask2:  DownloadTask?
 
 @objc public protocol SwiftyGifDelegate {
     @objc optional func gifDidStart(sender: UIImageView)
@@ -107,36 +109,29 @@ public extension UIImageView {
             return
         }
         
-        let loader = UIActivityIndicatorView()
-        
-        if showLoader {
-            self.addSubview(loader)
-            loader.translatesAutoresizingMaskIntoConstraints = false
-            self.addConstraints(NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-0-[subview]-0-|",
-                options: .directionLeadingToTrailing,
-                metrics: nil,
-                views: ["subview": loader]))
-            self.addConstraints(NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-0-[subview]-0-|",
-                options: .directionLeadingToTrailing,
-                metrics: nil,
-                views: ["subview": loader]))
-            loader.startAnimating()
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, _ , _) in
-            DispatchQueue.main.async {
-                loader.removeFromSuperview()
-                if let data = data {
-                    self.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
-                    self.delegate?.gifURLDidFinish?(sender: self)
-                } else {
-                    self.delegate?.gifURLDidFail?(sender: self)
-                }
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        downloadTask1 = DownloadService.shared.download(request: request)
+        downloadTask1?.completionHandler = { [weak self] in
+            switch $0 {
+            case .failure(let error):
+                print(error)
+                self!.delegate?.gifURLDidFail?(sender: self!)
+            case .success(let data):
+                print("Number of bytes: \(data.count)")
+                self!.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
+                self!.delegate?.gifURLDidFinish?(sender: self!)
+                
             }
+            downloadTask1 = nil
         }
-        task.resume()
+        downloadTask1?.progressHandler = { [weak self] in
+            print("Task1: \($0)")
+            //            self?.loadProgressIndicator1.doubleValue = $0
+        }
+        
+        //        imageView1.image = nil
+        //        loadProgressIndicator1.doubleValue = 0
+        downloadTask1?.resume()
     }
 
     // MARK: Logic
