@@ -210,7 +210,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SfF-QF-UMS">
-                                <rect key="frame" x="0.0" y="0.0" width="383" height="667"/>
+                                <rect key="frame" x="5" y="194" width="365" height="473"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0i-rc-2su">
@@ -226,9 +226,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="SfF-QF-UMS" firstAttribute="leading" secondItem="3iz-s5-32O" secondAttribute="leading" id="SHX-dN-guP"/>
-                            <constraint firstAttribute="trailing" secondItem="SfF-QF-UMS" secondAttribute="trailing" constant="-8" id="Ssi-aX-u6E"/>
-                            <constraint firstItem="SfF-QF-UMS" firstAttribute="top" secondItem="r3L-cD-9Kg" secondAttribute="bottom" constant="-64" id="Yta-gI-yCU"/>
+                            <constraint firstItem="SfF-QF-UMS" firstAttribute="leading" secondItem="3iz-s5-32O" secondAttribute="leading" constant="5" id="SHX-dN-guP"/>
+                            <constraint firstAttribute="trailing" secondItem="SfF-QF-UMS" secondAttribute="trailing" constant="5" id="Ssi-aX-u6E"/>
+                            <constraint firstItem="SfF-QF-UMS" firstAttribute="top" secondItem="r3L-cD-9Kg" secondAttribute="bottom" constant="130" id="Yta-gI-yCU"/>
                             <constraint firstItem="S0i-rc-2su" firstAttribute="centerX" secondItem="3iz-s5-32O" secondAttribute="centerX" id="fHE-lO-OTx"/>
                             <constraint firstItem="lWD-ZQ-tMC" firstAttribute="top" secondItem="S0i-rc-2su" secondAttribute="bottom" constant="55" id="n5a-qj-Omv"/>
                             <constraint firstItem="lWD-ZQ-tMC" firstAttribute="top" secondItem="SfF-QF-UMS" secondAttribute="bottom" id="t1v-4Q-fpE"/>
