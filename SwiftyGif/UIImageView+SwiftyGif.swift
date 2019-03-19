@@ -122,11 +122,11 @@ public extension UIImageView {
             switch $0 {
             case .failure(let error):
                 print(error)
-                self!.delegate?.gifURLDidFail?(sender: self!)
+                self?.delegate?.gifURLDidFail?(sender: self!)
             case .success(let data):
                 print("Number of bytes: \(data.count)")
-                self!.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
-                self!.delegate?.gifURLDidFinish?(sender: self!)
+                self?.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
+                self?.delegate?.gifURLDidFinish?(sender: self!)
                 
             }
             downloadTask1 = nil
