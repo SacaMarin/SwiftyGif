@@ -124,7 +124,6 @@ public extension UIImageView {
                 print(error)
                 self?.delegate?.gifURLDidFail?(sender: self!)
             case .success(let data):
-                print("Number of bytes: \(data.count)")
                 self?.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
                 self?.delegate?.gifURLDidFinish?(sender: self!)
                 
@@ -132,7 +131,6 @@ public extension UIImageView {
             downloadTask1 = nil
         }
         downloadTask1?.progressHandler = { [weak self] in
-            print("Task1: \($0)")
             progressView.progress = Float($0)
             if $0 == 1.0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
