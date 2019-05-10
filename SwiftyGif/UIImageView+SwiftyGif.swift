@@ -108,8 +108,9 @@ public extension UIImageView {
             print("Invalid Gif URL")
             return
         }
+        let screenSize = UIScreen.main.bounds
         let progressView = UIProgressView(progressViewStyle: .bar)
-        progressView.frame = CGRect(x: -self.frame.origin.x, y: -7, width: self.frame.width + (self.frame.origin.x * 2), height: 12)
+        progressView.frame = CGRect(x: -self.frame.origin.x, y: -7, width: screenSize.width, height: 12)
         progressView.trackTintColor = UIColor(red: 249/255, green: 250/255, blue: 252/255, alpha: 1)
         progressView.tintColor = UIColor(red: 249/255, green: 127/255, blue: 103/255, alpha: 1)
         progressView.isHidden = false
