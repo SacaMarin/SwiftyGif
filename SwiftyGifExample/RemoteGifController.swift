@@ -35,7 +35,9 @@ class RemoteGifController: UIViewController {
             return
         }
         let url = URL(string: string)
-        self.imageView.setGifFromURL(url)
+        self.imageView.setGifFromURL(url) { (status) in
+            print(status)
+        }
     }
     
     @IBAction func selectNext() {

@@ -60,7 +60,8 @@ public extension UIImageView {
     public convenience init(gifURL: URL?, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
         self.init()
         
-        setGifFromURL(gifURL, manager: manager, loopCount: loopCount)
+        setGifFromURL(gifURL, manager: manager, loopCount: loopCount) { (status) in
+        }
     }
     
     /**
@@ -102,7 +103,7 @@ public extension UIImageView {
      - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
      - Parameter showLoader: Show UIActivityIndicatorView or not
      */
-    public func setGifFromURL(_ url: URL?, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1, showLoader: Bool = true) {
+    public func setGifFromURL(_ url: URL?, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1, showLoader: Bool = true, completion: @escaping(_ downloaded: Bool) -> Void) {
         
         guard let url = url else {
             print("Invalid Gif URL")
@@ -135,7 +136,8 @@ public extension UIImageView {
             progressView.progress = Float($0)
             if $0 == 1.0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                      progressView.isHidden = true
+                    progressView.isHidden = true
+                    completion(true)
                 }
             }
         }
